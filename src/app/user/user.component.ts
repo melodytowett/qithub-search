@@ -20,7 +20,11 @@ export class UserComponent implements OnInit {
   }
   findProfile() {
     this.userservice.updateProfile(this.username);
-
+    // this.userservice.getUserInfo().subscribe( this.profile =>{
+    //   console.log(this.profile);
+    //   this.profile = this.profile
+      
+    // })
 
   }
   ngOnInit() {

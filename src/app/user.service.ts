@@ -23,7 +23,7 @@ export class UserService {
     this.profile = new User("", "", "", "", "", "", "")
   }
   getUserInfo() {
-    interface apiResponse {
+    interface ApiResponse {
       login: string,
       name: string,
       avatar_url: string,
@@ -35,7 +35,7 @@ export class UserService {
     }
 
     let promise = new Promise((resolve, reject) => {
-      this.http.get<apiResponse>(environment.apiurl + this.username + "?client_id=" + this.Client_ID + "&client_secret=" + this.Client_secrets).toPromise().then(response => {
+      this.http.get<ApiResponse>(environment.apiurl + this.username + "?client_id=" + this.Client_ID + "&client_secret=" + this.Client_secrets).toPromise().then(response => {
         this.profile.login = response!.login;
         this.profile.name = response!.name;
         this.profile.html_url = response!.html_url;
