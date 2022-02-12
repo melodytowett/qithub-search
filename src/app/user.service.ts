@@ -20,7 +20,7 @@ export class UserService {
   constructor(private http: HttpClient) {
     console.log("service is now ready")
     this.username = 'melodytowett'
-    this.profile = new User("", "", "", "", "", "","")
+    this.profile = new User("", "", "", "", "", "", "")
   }
   getUserInfo() {
     interface apiResponse {
@@ -30,27 +30,31 @@ export class UserService {
       html_url: string,
       followers: string,
       following: string,
-      public_repos:string,
+      public_repos: string,
 
     }
-    let promise = new Promise((resolve,reject)=>{
-     this.http.get<apiResponse>(environment.apiurl + this.username + "?client_id=" +this.Client_ID + "&client_secret=" + this.Client_secrets).toPromise().then(response =>{
-       this.profile.login = response!.login;
-       this.profile.name = response!.name;
-       this.profile.html_url= response!.html_url;
-       this.profile.avatar_url = response!.avatar_url;
-       this.profile.following=response!.following;
-       this.profile.followers = response!.followers;
-       this.profile.public_repos = response!.public_repos
-       
-       resolve(null);
-     },
-     error =>{
-       console.log("inlavid user")
-       reject(error)
-     })
-    })  
+
+    let promise = new Promise((resolve, reject) => {
+      this.http.get<apiResponse>(environment.apiurl + this.username + "?client_id=" + this.Client_ID + "&client_secret=" + this.Client_secrets).toPromise().then(response => {
+        this.profile.login = response!.login;
+        this.profile.name = response!.name;
+        this.profile.html_url = response!.html_url;
+        this.profile.avatar_url = response!.avatar_url;
+        this.profile.following = response!.following;
+        this.profile.followers = response!.followers;
+        this.profile.public_repos = response!.public_repos
+
+        resolve(null);
+      },
+        error => {
+          console.log("inlavid user")
+          reject(error)
+        })
+    })
     return promise;
+  }
+  updateProfile(username: string) {
+    this.username = this.username
   }
 
 }

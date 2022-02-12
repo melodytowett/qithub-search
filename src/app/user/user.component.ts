@@ -4,7 +4,7 @@ import { Repos } from '../repos';
 import { UserService } from '../user.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { subscribeOn } from 'rxjs';
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -12,21 +12,26 @@ import { subscribeOn } from 'rxjs';
 })
 export class UserComponent implements OnInit {
   profile!: User
-  profilename!: string
+  // profilename!: string
   repos!: Repos[]
+  username!: string
   constructor(private userservice: UserService, private http: HttpClient) {
-    this.profilename = 'melodytowett/repos'
+    //this.profilename = 'melodytowett/repos'
   }
+  findProfile() {
+    this.userservice.updateProfile(this.username);
 
+
+  }
   ngOnInit() {
     this.userservice.getUserInfo();
-    this.profile = this.userservice.profile
+    this.profile = this.userservice.profile;
     this.getRepos();
 
   }
-  getRepos(){
-    this.http.get<any>(environment.repos_url +this.profilename).subscribe(response =>{
-      console.log (response)
+  getRepos() {
+    this.http.get<any>('https://api.github.com/users/melodytowett/repos').subscribe(response => {
+      console.log(response)
       this.repos = response;
     })
   }

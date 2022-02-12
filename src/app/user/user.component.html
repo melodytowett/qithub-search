@@ -1,6 +1,8 @@
+<input class="form-control" name="userName" type="text" placeholder="Search"
+aria-label="Search" [(ngModel)]="username" name="username " (keyup)="findProfile()">
+
 <div class="container">
     <div class="col-md-6">
-        <p>Git Search</p>
         <div *ngIf = 'profile'> {{profile.name}} <small>({{profile.login}})</small>
         <div><img src="{{profile.avatar_url}}" alt=""></div>
         <div> {{profile.public_repos}}</div>

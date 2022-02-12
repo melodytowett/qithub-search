@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserService } from './user.service';
 import { UserComponent } from './user/user.component';
-//import { User } from './user';
+import { FormsModule } from '@angular/forms';
+//import { User } from './user'
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { UserComponent } from './user/user.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule
    
   ],
   providers: [UserService],
