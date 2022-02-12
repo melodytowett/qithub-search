@@ -8,7 +8,10 @@ import { UserService } from '../user.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-user!:any[];
+  // profile:any;
+  // repos:any;
+  // username!:string;
+  user!:User[]
   constructor(private userservice:UserService) {
     this.userservice.getUserInfor().subscribe(user =>{
       console.log(user);

@@ -16,7 +16,7 @@ private Client_secrets = "f0a72b89fcda40794b77b68f0748f113fc0d1be0";
     console.log("service is now ready")
     this.username = 'melodytowett'
   }
-  getUserInfor(){
+  getProfile(){
     return this.http.get("https://api.github.com/users/" + this.username + "?client_id=" +this.Client_ID + "&client_secret=" + this.Client_secrets)
     .pipe(map(res=> res));    
   }
