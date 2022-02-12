@@ -1,21 +1,23 @@
 import { Injectable } from '@angular/core';
 //import { from } from 'rxjs';
-import { map } from 'rxjs';
-import { HttpClient, JsonpClientBackend} from '@angular/common/http';
+import {map} from 'rxjs/operators';
+import { HttpClient} from '@angular/common/http';
+import { User } from './user';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  //user:User;
 private username:string;
-private clientid = "baa84c5702181c5588e7";
-private clientsecret = "3f362844d2e0d1d1d109b95c85bb454319939db8";
+private Client_ID = "baa84c5702181c5588e7";
+private Client_secrets = "f0a72b89fcda40794b77b68f0748f113fc0d1be0";
 
   constructor(private http:HttpClient) { 
     console.log("service is now ready")
     this.username = 'melodytowett'
   }
   getUserInfor(){
-    return this.http.get("https://api.github.com.users" + this.username + "?client_id=" +this.clientid + "&client_secret=" + this.clientsecret)
+    return this.http.get("https://api.github.com/users/" + this.username + "?client_id=" +this.Client_ID + "&client_secret=" + this.Client_secrets)
     .pipe(map(res=> res));    
   }
 }
