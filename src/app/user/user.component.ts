@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-//import { User } from '../user';
 import { User } from '../user';
 import { UserService } from '../user.service';
 @Component({
@@ -8,17 +7,15 @@ import { UserService } from '../user.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  // profile:any;
-  // repos:any;
-  // username!:string;
-  user!:User[]
+ user!:User
   constructor(private userservice:UserService) {
-    this.userservice.getUserInfor().subscribe(user =>{
-      console.log(user);
-      //this.user = UserService.getUserInfor();
-    })
-   }
+      this.userservice.getUserInfo().subscribe(user =>{
+        console.log(user);
+        //this.user = user
+ })
+    // this.userservice.getUserInfo().subscribe(profile=>{
 
+   }
   ngOnInit(): void {
   }
 

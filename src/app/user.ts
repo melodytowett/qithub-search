@@ -1,5 +1,6 @@
 export class User {
- constructor(public username:string, public repos:string, public profile:string){
+ constructor(public profile:any,public repos:any, public username:string){
 
-    }
+ }
+ 
 }
