@@ -1,22 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
+import { Repos } from '../repos';
 import { UserService } from '../user.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { subscribeOn } from 'rxjs';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
- user!:User
-  constructor(private userservice:UserService) {
-      this.userservice.getUserInfo().subscribe(user =>{
-        console.log(user);
-        //this.user = user
- })
-    // this.userservice.getUserInfo().subscribe(profile=>{
+  profile!: User
+  profilename!: string
+  repos!: Repos[]
+  constructor(private userservice: UserService, private http: HttpClient) {
+    this.profilename = 'melodytowett/repos'
+  }
 
-   }
-  ngOnInit(): void {
+  ngOnInit() {
+    this.userservice.getUserInfo();
+    this.profile = this.userservice.profile
+    this.getRepos();
+
+  }
+  getRepos(){
+    this.http.get<any>(environment.repos_url +this.profilename).subscribe(response =>{
+      console.log (response)
+      this.repos = response;
+    })
   }
 
 }
