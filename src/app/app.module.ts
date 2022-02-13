@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { UserService } from './user.service';
 import { UserComponent } from './user/user.component';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './navbar/navbar.component';
 //import { User } from './user'
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent
+    UserComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
