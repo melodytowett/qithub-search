@@ -7,13 +7,15 @@ import { UserService } from './user.service';
 import { UserComponent } from './user/user.component';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
 //import { User } from './user'
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
