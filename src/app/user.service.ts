@@ -19,11 +19,11 @@ export class UserService {
     //this.profile = new User("", "", "", "", "", "", "")
   }
   getProfile(){
-    return this.http.get(environment.apiurl + this.username + '?client_id' + this.Client_ID + '&client_secret' + this.Client_secrets).pipe(map(res =>res));
+    return this.http.get('https://api.github.com/users/' + this.username + '?client_id' + this.Client_ID + '&client_secret' + this.Client_secrets).pipe(map(res =>res));
 
   }
   getRepos(){
-    return this.http.get(environment.repos_url + this.username + '/repos?client_id' + this.Client_ID + '&client_secret=' + this.Client_secrets ).pipe(map(res => res));
+    return this.http.get('https://api.github.com/users/' + this.username + '/repos?client_id' + this.Client_ID + '&client_secret=' + this.Client_secrets ).pipe(map(res => res));
 
   }
 
