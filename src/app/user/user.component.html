@@ -1,22 +1,23 @@
-<input class="form-control" name="userName" type="text" placeholder="Search"
-aria-label="Search" [(ngModel)]="username" name="username " (keyup)="findProfile()">
+ <div>
+ <input class="form-control" name="userName" type="text" placeholder="Search"
+aria-label="Search" [(ngModel)]="username" name="username " (keyup)="findUser()">
+</div>
 
-<div class="container">
     <div class="row">
     <div class="col-md-6">
-        <div *ngIf = 'profile'> {{profile.name}} <small>({{profile.login}})</small>
+        <div *ngIf = 'profile'>
+             {{profile.name}} <small>{{profile.login}}</small>
         <div>
             <img src="{{profile.avatar_url}}" alt="">
         </div>
-        <div> {{profile.public_repos}}</div>
+        <!-- <div> {{profile.public_repos}}</div> -->
     </div>
     </div>
     <div class="col-md-6">
         <div *ngFor = 'let repo of repos'>
-            <p>{{repo.name}}</p>
+            <h4>{{repo.name}}</h4> 
         <p> {{repo.description}} </p>
     <a href="{{repo.repos_url}}"> view in github</a> 
     </div>
-     </div>
     </div>
 </div>

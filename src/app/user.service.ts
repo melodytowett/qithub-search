@@ -1,12 +1,8 @@
-import { Injectable } from '@angular/core';
-
-//import { map } from 'rxjs/operators';
+import { Injectable } from '@angular/core';;
 import { HttpClient } from '@angular/common/http';
 import { User } from './user';
 import { environment } from 'src/environments/environment';
-//import { rejects } from 'assert';
-//import { resolve } from 'dns';
-//import { error } from 'console';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,41 +16,19 @@ export class UserService {
   constructor(private http: HttpClient) {
     console.log("service is now ready")
     this.username = 'melodytowett'
-    this.profile = new User("", "", "", "", "", "", "")
+    //this.profile = new User("", "", "", "", "", "", "")
   }
-  getUserInfo() {
-    interface ApiResponse {
-      login: string,
-      name: string,
-      avatar_url: string,
-      html_url: string,
-      followers: string,
-      following: string,
-      public_repos: string,
+  getProfile(){
+    return this.http.get(environment.apiurl + this.username + '?client_id' + this.Client_ID + '&client_secret' + this.Client_secrets).pipe(map(res =>res));
 
-    }
-
-    let promise = new Promise((resolve, reject) => {
-      this.http.get<ApiResponse>(environment.apiurl + this.username + "?client_id=" + this.Client_ID + "&client_secret=" + this.Client_secrets).toPromise().then(response => {
-        this.profile.login = response!.login;
-        this.profile.name = response!.name;
-        this.profile.html_url = response!.html_url;
-        this.profile.avatar_url = response!.avatar_url;
-        this.profile.following = response!.following;
-        this.profile.followers = response!.followers;
-        this.profile.public_repos = response!.public_repos
-
-        resolve(null);
-      },
-        error => {
-          console.log("inlavid user")
-          reject(error)
-        })
-    })
-    return promise;
   }
+  getRepos(){
+    return this.http.get(environment.repos_url + this.username + '/repos?client_id' + this.Client_ID + '&client_secret=' + this.Client_secrets ).pipe(map(res => res));
+
+  }
+
   updateProfile(username: string) {
-    this.username = this.username
+    this.username = username
   }
 
 }

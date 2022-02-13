@@ -11,33 +11,28 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  profile!: User
-  // profilename!: string
-  repos!: Repos[]
+  profile!: any
+  repos!: any
   username!: string
-  constructor(private userservice: UserService, private http: HttpClient) {
-    //this.profilename = 'melodytowett/repos'
+  constructor(private service: UserService, private http: HttpClient) {
+    //this.profile = 'melodytowett/repos'
   }
-  findProfile() {
-    this.userservice.updateProfile(this.username);
-    // this.userservice.getUserInfo().subscribe( this.profile =>{
-    //   console.log(this.profile);
-    //   this.profile = this.profile
+  findUser() {
+    this.service.updateProfile(this.username);
+    this.service.getProfile().subscribe( profile =>{
+      console.log(profile);
+      this.profile = profile;
       
-    // })
+    })
+    this.service.getRepos().subscribe(repos =>{
+      this.repos = repos;
+      console.log(repos);
+    })
 
   }
   ngOnInit() {
-    this.userservice.getUserInfo();
-    this.profile = this.userservice.profile;
-    this.getRepos();
-
-  }
-  getRepos() {
-    this.http.get<any>('https://api.github.com/users/melodytowett/repos').subscribe(response => {
-      console.log(response)
-      this.repos = response;
-    })
+ 
   }
 
 }
+
